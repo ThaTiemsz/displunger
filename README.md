@@ -1,4 +1,4 @@
-![displunger banner](https://cdn.discordapp.com/attachments/415951527258095616/822402726666436618/displunger.banner.png)
+![displunger banner](https://cdn.discordapp.com/attachments/415951527258095616/822453386263265290/displunger.banner.png)
 
 view and run old discord builds.
 
