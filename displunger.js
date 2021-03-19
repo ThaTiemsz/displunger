@@ -68,5 +68,6 @@ app.get('/assets/:asset', async function(req, res){
 })
 
 app.listen(port, () => {
-  console.log(`[Displunger] Build Viewer Live`)
+  console.log(`[Displunger] displunger ready.`)
+  console.log(`[Displunger] Launch a build via \x1b[36m\x1b[4mhttp://localhost:${port}/launch/<build hash>\x1b[0m`)
 })
