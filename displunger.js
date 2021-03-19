@@ -39,13 +39,42 @@ app.get('/launch/:build', async function(req, res){
         index = index.replace(/\$APP/, build.body.rootScripts[2]);
         break;
       default:
-        res.status(400).send(`Unsupported Build Format (${build.body.rootScripts.length})`);
+        return res.status(400).send(`Unsupported Build Format (${build.body.rootScripts.length})`);
         break;
     };
     //inject the stylesheet and other data
     index = index.replace(/\$STYLE/g, build.body.stylesheet);
     index = index.replace(/\$BUILDID/g, build.body.buildNumber);
-    index = index.replace(/\$GLOBALENV/, JSON.stringify(build.body.globalEnvs));
+    if(!build.body.globalEnvs.API_ENDPOINT){
+      const premadeEnv = {
+        API_ENDPOINT: '//discord.com/api',
+        WEBAPP_ENDPOINT: '//discord.com',
+        CDN_HOST: 'cdn.discordapp.com',
+        ASSET_ENDPOINT: 'https://discord.com',
+        MEDIA_PROXY_ENDPOINT: 'https://media.discordapp.net',
+        WIDGET_ENDPOINT: '//discord.com/widget',
+        INVITE_HOST: 'discord.gg',
+        GUILD_TEMPLATE_HOST: 'discord.new',
+        GIFT_CODE_HOST: 'discord.gift',
+        RELEASE_CHANNEL: 'stable',
+        MARKETING_ENDPOINT: '//discord.com',
+        BRAINTREE_KEY: 'production_5st77rrc_49pp2rp4phym7387',
+        STRIPE_KEY: 'pk_live_CUQtlpQUF0vufWpnpUmQvcdi',
+        NETWORKING_ENDPOINT: '//router.discordapp.net',
+        RTC_LATENCY_ENDPOINT: '//latency.discord.media/rtc',
+        ACTIVITY_APPLICATION_HOST: 'discordsays.com',
+        PROJECT_ENV: 'production',
+        REMOTE_AUTH_ENDPOINT: '//remote-auth-gateway.discord.gg',
+        SENTRY_TAGS: {"buildId":"7ea92cf","buildType":"normal"},
+        MIGRATION_SOURCE_ORIGIN: 'https://discordapp.com',
+        MIGRATION_DESTINATION_ORIGIN: 'https://discord.com',
+        HTML_TIMESTAMP: Date.now(),
+        ALGOLIA_KEY: 'aca0d7082e4e63af5ba5917d5e96bed0',
+      }
+      index = index.replace(/\$GLOBALENV/, JSON.stringify(premadeEnv));
+    } else {
+      index = index.replace(/\$GLOBALENV/, JSON.stringify(build.body.globalEnvs));
+    };
     //send the app
     res.setHeader('Content-Type', 'text/html');
     return res.send(index);
