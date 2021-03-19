@@ -57,6 +57,7 @@ app.get('/launch/:build', async function(req, res){
 
 //proxies all requests under /assets/*
 app.get('/assets/:asset', async function(req, res){
+  //return res.redirect(`${assetHost}${req.params.asset}`)   For the smart people, get a browser addon like CORS Anywhere and uncomment this line to redirect instead of proxying assets
   try{
     const site = await superagent.get(`${assetHost}${req.params.asset}`);
     res.setHeader('Content-Type', site.headers['content-type']);
