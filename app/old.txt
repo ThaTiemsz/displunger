@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8" />
+      <meta content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" name="viewport" />
+      <!-- section:seometa -->
+      <meta property="og:type" content="website" />
+      <meta property="og:site_name" content="Discord" />
+      <meta property="og:title" content="Discord - A New Way to Chat with Friends & Communities" />
+      <meta
+         property="og:description"
+         content="Discord is the easiest way to communicate over voice, video, and text.  Chat, hang out, and stay close with your friends and communities."
+         />
+      <meta property="og:image" content="/assets/$STYLE" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@discord" />
+      <meta name="twitter:creator" content="@discord" />
+      <!-- endsection -->
+      <link rel="stylesheet" href="/assets/$STYLE">
+      <link rel="icon" href="/assets/07dca80a102d4149e9736d4b162cff6f.ico" />
+      <!-- section:title -->
+      <title>Discord Build Viewer | </title>
+      <!-- endsection -->
+   </head>
+   <body>
+      <div id="app-mount"></div><script nonce="MTQ3LDI2LDIyMywxNjQsNTIsMTIyLDYyLDEyNg==">window.__OVERLAY__ = /overlay/.test(location.pathname)</script><script nonce="MTQ3LDI2LDIyMywxNjQsNTIsMTIyLDYyLDEyNg==">window.GLOBAL_ENV = {
+         API_ENDPOINT: 'http://discordapp.com/api',
+         WEBAPP_ENDPOINT: 'http://discordapp.com',
+         CDN_HOST: 'cdn.discordapp.com',
+         ASSET_ENDPOINT: 'https://discordapp.com',
+         WIDGET_ENDPOINT: 'http://discordapp.com/widget',
+         INVITE_HOST: 'discord.gg',
+         GIFT_CODE_HOST: 'discord.gift',
+         RELEASE_CHANNEL: 'stable',
+         MARKETING_ENDPOINT: 'http://discordapp.com',
+         BRAINTREE_KEY: 'production_5st77rrc_49pp2rp4phym7387',
+         STRIPE_KEY: 'pk_live_CUQtlpQUF0vufWpnpUmQvcdi',
+         NETWORKING_ENDPOINT: 'http://router.discordapp.net',
+         PROJECT_ENV: 'production',
+         HTML_TIMESTAMP: Date.now(),
+      };
+      </script><script nonce="MTYyLDkwLDg0LDExNSw3LDEyOCwyMjUsMjUx">undefined</script><script src="/assets/$LOADER" integrity=""></script><script src="/assets/$CLASSES" integrity=""></script><script src="/assets/$APP" integrity=""></script>
+   </body>
+</html>
+
+
+
+
