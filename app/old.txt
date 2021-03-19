@@ -23,29 +23,7 @@
       <!-- endsection -->
    </head>
    <body>
-      <div id="app-mount"></div><script nonce="MTQ3LDI2LDIyMywxNjQsNTIsMTIyLDYyLDEyNg==">window.__OVERLAY__ = /overlay/.test(location.pathname)</script><script nonce="MTQ3LDI2LDIyMywxNjQsNTIsMTIyLDYyLDEyNg==">window.GLOBAL_ENV = {
-    "API_ENDPOINT": "//canary.discord.com/api",
-    "WEBAPP_ENDPOINT": "//canary.discord.com",
-    "CDN_HOST": "cdn.discordapp.com",
-    "ASSET_ENDPOINT": "https://canary.discord.com",
-    "WIDGET_ENDPOINT": "//canary.discord.com/widget",
-    "INVITE_HOST": "discord.gg",
-    "GIFT_CODE_HOST": "discord.gift",
-    "RELEASE_CHANNEL": "canary",
-    "MARKETING_ENDPOINT": "//canary.discord.com",
-    "BRAINTREE_KEY": "production_5st77rrc_49pp2rp4phym7387",
-    "STRIPE_KEY": "pk_live_CUQtlpQUF0vufWpnpUmQvcdi",
-    "NETWORKING_ENDPOINT": "//router.discordapp.net",
-    "PROJECT_ENV": "production",
-    "SENTRY_TAGS": {
-        "buildId": "9d63b58",
-        "buildType": "normal"
-    }
-};
+      <div id="app-mount"></div><script nonce="MTQ3LDI2LDIyMywxNjQsNTIsMTIyLDYyLDEyNg==">window.__OVERLAY__ = /overlay/.test(location.pathname)</script><script nonce="MTQ3LDI2LDIyMywxNjQsNTIsMTIyLDYyLDEyNg==">window.GLOBAL_ENV = {"API_ENDPOINT":"//canary.discord.com/api","WEBAPP_ENDPOINT":"//canary.discord.com","CDN_HOST":"cdn.discordapp.com","ASSET_ENDPOINT":"https://canary.discord.com","WIDGET_ENDPOINT":"//canary.discord.com/widget","INVITE_HOST":"discord.gg","GIFT_CODE_HOST":"discord.gift","RELEASE_CHANNEL":"canary","MARKETING_ENDPOINT":"//canary.discord.com","BRAINTREE_KEY":"production_5st77rrc_49pp2rp4phym7387","STRIPE_KEY":"pk_live_CUQtlpQUF0vufWpnpUmQvcdi","NETWORKING_ENDPOINT":"//router.discordapp.net","PROJECT_ENV":"production","SENTRY_TAGS":{"buildId":"c16d22a","buildType":"normal"}}
       </script><script nonce="MTYyLDkwLDg0LDExNSw3LDEyOCwyMjUsMjUx">undefined</script><script src="/assets/$LOADER" integrity=""></script><script src="/assets/$CLASSES" integrity=""></script><script src="/assets/$APP" integrity=""></script>
    </body>
 </html>
-
-
-
-
