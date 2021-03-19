@@ -15,7 +15,6 @@ app.get('/launch/:build', async function(req, res){
     try{
       build = await superagent.get(`https://builds.discord.sale/api/builds/${req.params.build}/raw`)
     } catch(e){
-      console.log(e)
       res.status(400).send('Build not found.')
     }
     //pick the right app html template for build
@@ -46,7 +45,6 @@ app.get('/launch/:build', async function(req, res){
       index = index.replace(/\$CLASSES/, build.body.rootScripts[1])
       index = index.replace(/\$APP/, build.body.rootScripts[2])
     }
-    console.log(build.body.rootScripts[3])
     res.setHeader('Content-Type', 'text/html')
     res.send(index)
   } catch(e){
