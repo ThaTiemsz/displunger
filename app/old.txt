@@ -19,26 +19,29 @@
       <link rel="stylesheet" href="/assets/$STYLE">
       <link rel="icon" href="/assets/07dca80a102d4149e9736d4b162cff6f.ico" />
       <!-- section:title -->
-      <title>Discord Build Viewer | </title>
+      <title>Discord Build Viewer | $BUILDID</title>
       <!-- endsection -->
    </head>
    <body>
       <div id="app-mount"></div><script nonce="MTQ3LDI2LDIyMywxNjQsNTIsMTIyLDYyLDEyNg==">window.__OVERLAY__ = /overlay/.test(location.pathname)</script><script nonce="MTQ3LDI2LDIyMywxNjQsNTIsMTIyLDYyLDEyNg==">window.GLOBAL_ENV = {
-         API_ENDPOINT: 'http://discordapp.com/api',
-         WEBAPP_ENDPOINT: 'http://discordapp.com',
-         CDN_HOST: 'cdn.discordapp.com',
-         ASSET_ENDPOINT: 'https://discordapp.com',
-         WIDGET_ENDPOINT: 'http://discordapp.com/widget',
-         INVITE_HOST: 'discord.gg',
-         GIFT_CODE_HOST: 'discord.gift',
-         RELEASE_CHANNEL: 'stable',
-         MARKETING_ENDPOINT: 'http://discordapp.com',
-         BRAINTREE_KEY: 'production_5st77rrc_49pp2rp4phym7387',
-         STRIPE_KEY: 'pk_live_CUQtlpQUF0vufWpnpUmQvcdi',
-         NETWORKING_ENDPOINT: 'http://router.discordapp.net',
-         PROJECT_ENV: 'production',
-         HTML_TIMESTAMP: Date.now(),
-      };
+    "API_ENDPOINT": "//canary.discord.com/api",
+    "WEBAPP_ENDPOINT": "//canary.discord.com",
+    "CDN_HOST": "cdn.discordapp.com",
+    "ASSET_ENDPOINT": "https://canary.discord.com",
+    "WIDGET_ENDPOINT": "//canary.discord.com/widget",
+    "INVITE_HOST": "discord.gg",
+    "GIFT_CODE_HOST": "discord.gift",
+    "RELEASE_CHANNEL": "canary",
+    "MARKETING_ENDPOINT": "//canary.discord.com",
+    "BRAINTREE_KEY": "production_5st77rrc_49pp2rp4phym7387",
+    "STRIPE_KEY": "pk_live_CUQtlpQUF0vufWpnpUmQvcdi",
+    "NETWORKING_ENDPOINT": "//router.discordapp.net",
+    "PROJECT_ENV": "production",
+    "SENTRY_TAGS": {
+        "buildId": "9d63b58",
+        "buildType": "normal"
+    }
+};
       </script><script nonce="MTYyLDkwLDg0LDExNSw3LDEyOCwyMjUsMjUx">undefined</script><script src="/assets/$LOADER" integrity=""></script><script src="/assets/$CLASSES" integrity=""></script><script src="/assets/$APP" integrity=""></script>
    </body>
 </html>
