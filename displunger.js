@@ -91,9 +91,15 @@ app.get('/assets/:asset', async function(req, res){
     const site = await superagent.get(`${assetHost}${req.params.asset}`);
     res.setHeader('Content-Type', site.headers['content-type']);
     if(req.params.asset.endsWith('css')){ return res.send(site.text); };
+    //fix for old builds
+    if(req.params.asset.endsWith('js')){
+      body = site.body
+      return res.send(body.toString().replace(/r\[t.type\].push/g, 'r[t.type]?.push'))
+    }
     return res.send(site.body);
   } catch(e){
-    res.status(400).send('Not Found.');
+    console.log(e)
+    res.status(404).send('Not Found.');
   };
 })
 
