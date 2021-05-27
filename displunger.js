@@ -1,20 +1,22 @@
 const express = require('express');
 const superagent = require('superagent');
 const fs = require('fs');
+const { env } = require('process');
 
 const app = express();
 
 const assetHost = 'https://canary.discord.com/assets/';
 const port = 3000;
 
-//quick launch for latest version
-app.get('/launch', async function(req, res){
-  const latest = await superagent.get(`https://builds.discord.sale/builds/feed/json`);
-  res.redirect(`/launch/${latest.body.items[0].id}`);
-})
+var science = false
 
-//Main Attraction
-app.get('/launch/:build', async function(req, res){
+//handle process arguments
+const processArgs = process.argv.slice(2);
+if(processArgs.includes('-science')){
+  science = true
+}
+
+async function loadBuild(req, res){
   try{
     let build;
     try{
@@ -46,7 +48,7 @@ app.get('/launch/:build', async function(req, res){
     index = index.replace(/\$STYLE/g, build.body.stylesheet);
     index = index.replace(/\$BUILDID/g, build.body.buildNumber);
     if(!build.body.globalEnvs.API_ENDPOINT){
-      const premadeEnv = {
+      var premadeEnv = {
         API_ENDPOINT: '//discord.com/api',
         WEBAPP_ENDPOINT: '//discord.com',
         CDN_HOST: 'cdn.discordapp.com',
@@ -71,9 +73,16 @@ app.get('/launch/:build', async function(req, res){
         HTML_TIMESTAMP: Date.now(),
         ALGOLIA_KEY: 'aca0d7082e4e63af5ba5917d5e96bed0',
       }
+      if(science == true){
+        premadeEnv['RELEASE_CHANNEL'] = "staging"
+      }
       index = index.replace(/\$GLOBALENV/, JSON.stringify(premadeEnv));
     } else {
-      index = index.replace(/\$GLOBALENV/, JSON.stringify(build.body.globalEnvs));
+      environment = build.body.globalEnvs
+      if(science == true){
+        environment['RELEASE_CHANNEL'] = "staging"
+      }
+      index = index.replace(/\$GLOBALENV/, JSON.stringify(environment));
     };
     //send the app
     res.setHeader('Content-Type', 'text/html');
@@ -82,6 +91,22 @@ app.get('/launch/:build', async function(req, res){
     console.log(e);
     return res.status(400).send('Failed to load build.');
   }
+}
+
+
+//quick launch for latest version
+app.get('/launch', async function(req, res){
+  const latest = await superagent.get(`https://builds.discord.sale/builds/feed/json`);
+  res.redirect(`/launch/${latest.body.items[0].id}`);
+})
+
+//Main Attraction
+app.get('/launch/:build/:endpoint', async function(req, res){
+  loadBuild(req, res)
+})
+
+app.get('/launch/:build', async function(req, res){
+  loadBuild(req, res)
 })
 
 //proxies all requests under /assets/*
@@ -98,7 +123,7 @@ app.get('/assets/:asset', async function(req, res){
     }
     return res.send(site.body);
   } catch(e){
-    console.log(e)
+    //console.log(e)  -  Uncomment for debugging
     res.status(404).send('Not Found.');
   };
 })
@@ -108,6 +133,10 @@ app.get('*', async function(req, res){
 })
 
 app.listen(port, () => {
-  console.log(`[Displunger] displunger ready.`);
+  if(science == true){
+    console.log('[Displunger] displunger ready with science.')
+  } else {
+    console.log(`[Displunger] displunger ready.`);
+  }
   console.log(`[Displunger] Launch a build via \x1b[36m\x1b[4mhttp://localhost:${port}/launch/<build hash>\x1b[0m`);
 });
