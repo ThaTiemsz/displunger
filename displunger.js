@@ -51,6 +51,7 @@ async function loadBuild(req, res){
       var premadeEnv = {
         API_ENDPOINT: '//discord.com/api',
         WEBAPP_ENDPOINT: '//discord.com',
+        GATEWAY_ENDPOINT: 'wss://gateway.discord.gg',
         CDN_HOST: 'cdn.discordapp.com',
         ASSET_ENDPOINT: 'https://discord.com',
         MEDIA_PROXY_ENDPOINT: 'https://media.discordapp.net',
