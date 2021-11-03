@@ -20,34 +20,37 @@ async function loadBuild(req, res){
   try{
     let build;
     try{
-      build = await superagent.get(`https://builds.discord.sale/api/builds/${req.params.build}/raw`); //Fetch the build data
+      build = await superagent.get(`https://api.discord.sale/builds/${req.params.build}`); //Fetch the build data
     } catch(e){
       res.status(400).send('Build not found.');
     };
     //pick the right app html template for build and inject scripts
     let index;
-    switch(build.body.rootScripts.length){
+
+    const rootScripts = build.body.files.rootScripts.map(script => script + ".js")
+
+    switch(build.body.files.rootScripts.length){
       case 4:
         index = fs.readFileSync('./app/modern.txt', 'utf-8');
-        index = index.replace(/\$LOADER/, build.body.rootScripts[0]);
-        index = index.replace(/\$CLASSES/, build.body.rootScripts[1]);
-        index = index.replace(/\$WEBPACK/, build.body.rootScripts[2]);
-        index = index.replace(/\$APP/, build.body.rootScripts[3]);
+        index = index.replace(/\$LOADER/, rootScripts[0]);
+        index = index.replace(/\$CLASSES/, rootScripts[1]);
+        index = index.replace(/\$WEBPACK/, rootScripts[2]);
+        index = index.replace(/\$APP/, rootScripts[3]);
         break;
       case 3:
         index = fs.readFileSync('./app/old.txt', 'utf-8');
-        index = index.replace(/\$LOADER/, build.body.rootScripts[0]);
-        index = index.replace(/\$CLASSES/, build.body.rootScripts[1]);
-        index = index.replace(/\$APP/, build.body.rootScripts[2]);
+        index = index.replace(/\$LOADER/, rootScripts[0]);
+        index = index.replace(/\$CLASSES/, rootScripts[1]);
+        index = index.replace(/\$APP/, rootScripts[2]);
         break;
       default:
-        return res.status(400).send(`Unsupported Build Format (${build.body.rootScripts.length})`);
+        return res.status(400).send(`Unsupported Build Format (${rootScripts.length})`);
         break;
     };
     //inject the stylesheet and other data
-    index = index.replace(/\$STYLE/g, build.body.stylesheet);
-    index = index.replace(/\$BUILDID/g, build.body.buildNumber);
-    if(!build.body.globalEnvs.API_ENDPOINT){
+    index = index.replace(/\$STYLE/g, build.body.files.css[0] + ".css");
+    index = index.replace(/\$BUILDID/g, build.body.number);
+    if(!build.body.GLOBAL_ENV.API_ENDPOINT){
       var premadeEnv = {
         API_ENDPOINT: '//discord.com/api',
         WEBAPP_ENDPOINT: '//discord.com',
@@ -79,7 +82,7 @@ async function loadBuild(req, res){
       }
       index = index.replace(/\$GLOBALENV/, JSON.stringify(premadeEnv));
     } else {
-      environment = build.body.globalEnvs
+      environment = build.body.GLOBAL_ENV
       if(science == true){
         environment['RELEASE_CHANNEL'] = "staging"
       }
@@ -97,8 +100,8 @@ async function loadBuild(req, res){
 
 //quick launch for latest version
 app.get('/launch', async function(req, res){
-  const latest = await superagent.get(`https://builds.discord.sale/builds/feed/json`);
-  res.redirect(`/launch/${latest.body.items[0].id}`);
+  const latest = await superagent.get(`https://api.discord.sale/builds`);
+  res.redirect(`/launch/${latest.body[0].hash}`);
 })
 
 //Main Attraction
