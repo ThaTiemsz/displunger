@@ -39,12 +39,13 @@ or\
 
 This option will manually set the root CSS file in case the build data could not be fetched.
 
+**Usage:**\
+`node displunger -c <filename>`
+
 ### `--api` `-a`
 
 This option will manually set the API version in case the build data could not be fetched.
 
-**Usage:**
-`node displunger -c <filename>`
 
 ## Old Builds
 The oldest build we can currently launch is `21837 (10b6c00342136bb3324d2d694b86050ae915017b)`.
