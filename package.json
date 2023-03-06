@@ -1,12 +1,28 @@
 {
   "name": "displunger",
-  "version": "1.0.0",
-  "description": "discord build history viewer",
+  "version": "2.0.0",
+  "description": "Discord build history viewer",
   "main": "displunger.js",
+  "type": "module",
+  "scripts": {
+    "start": "node displunger.js -s"
+  },
   "author": "derpystuff",
+  "contributors": [
+    "NurMarvin",
+    "Tiemen"
+  ],
   "license": "ISC",
+  "engines": {
+    "node": ">=16.15.0"
+  },
   "dependencies": {
-    "express": "^4.17.1",
-    "superagent": "^6.1.0"
+    "@fastify/cors": "^8.2.0",
+    "@fastify/http-proxy": "^8.4.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "fastify": "^4.14.1",
+    "minimist": "^1.2.8",
+    "superagent": "^8.0.9"
   }
 }
