@@ -37,7 +37,7 @@ const apiVersion = args.api ?? 9;
 
 const canonicalUrl = new URL(args.host ?? `http://127.0.0.1:${port}`);
 const premadeEnv = {
-  API_ENDPOINT: `//${canonicalUrl.host}/api`,
+  API_ENDPOINT: `//canary.discord.com/api`,
   API_VERSION: apiVersion,
   WEBAPP_ENDPOINT: "//canary.discord.com",
   GATEWAY_ENDPOINT: "wss://gateway.discord.gg",
@@ -85,7 +85,7 @@ function getBuildFromArgs() {
 async function fetchBuildFromDsale(buildId) {
   try {
     const res = await fetch(`https://api.discord.sale/builds/${buildId}`);
-    if (!build.ok) return null;
+    if (!res.ok) return null;
 
     const build = await res.json();
     console.log("[Displunger] Launching from Discord.sale API...", buildId)
@@ -171,6 +171,8 @@ async function loadBuild(req, res) {
     const environment = GLOBAL_ENV.API_ENDPOINT ? GLOBAL_ENV : premadeEnv;
     if (science === true)
       environment["RELEASE_CHANNEL"] = "staging";
+
+    environment["API_ENDPOINT"] = `//${canonicalUrl.host}/api`;
 
     body = body.replace("$GLOBALENV", JSON.stringify(environment));
 
